@@ -100,7 +100,7 @@ class Sheets():
             #For a personal choice I preferred to divide by 30 to get the scale of the avarege to 0-10
             avg = (int(row[2]) + int(row[3]) + int(row[4])) / 30
             attendance_percentage = (60 - int(row[1])) / 60 * 100
-            range = self.helperIndex(row)
+            range = self.helper_index(row)
             print(f"Name: {row[0]}, Avarage: {round(avg,2)}, Frequency: {round(attendance_percentage,2)}%")
             if attendance_percentage < 75:
                 print(f"The stundent {row[0]} was disapproved by absence")
