@@ -101,26 +101,26 @@ class Sheets():
             avg = (int(row[2]) + int(row[3]) + int(row[4])) / 30
             percentAttendClasses = (60 - int(row[1])) / 60 * 100
             range = self.helperIndex(row)
-            print(f"Nome: {row[0]}, Média: {round(avg,2)}, Frequência: {round(percentAttendClasses,2)}%")
+            print(f"Name: {row[0]}, Avarage: {round(avg,2)}, Frequency: {round(percentAttendClasses,2)}%")
             if percentAttendClasses < 75:
-                print(f"O aluno {row[0]} foi reprovado por falta")
+                print(f"The stundent {row[0]} was disapproved by absence")
                 #The updateState function is called and passed the range and the value to be updated
                 self.updateState(range,{"values": [['Reprovado por falta']]})
                 self.naf(range)
             elif (avg < 5):
-                print(f"O aluno {row[0]} foi reprovado por média")
+                print(f"The student {row[0]} was reproved by avarage")
                 self.updateState(range,{"values": [['Reprovado por média']]})
                 self.naf(range)
             elif (avg >= 5 and avg < 7):
                 #In this situation besides the "Situação" column be updated the "Nota para aprovação final" column is updated as well
                 # With the formula bellow
-                print(f"O aluno {row[0]} está em exame final")
+                print(f"The student {row[0]} is in the final exam")
                 self.updateState(range,{"values": [['Exame final']]})
                 #The formula calculates how much the students needs to pass the final exam
                 self.naf(range,{"values": [[math.ceil(avg*10 - (2 * 5))]]})
             else:
                 #If the student get any avarage above 7 he is approved	
-                print(f"O aluno {row[0]} foi aprovado")  
+                print(f"The student {row[0]} was approved")  
                 self.updateState(range,{"values": [['Aprovado']]})
                 self.naf(range)
     #Method that executes the whole process
